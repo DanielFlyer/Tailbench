@@ -103,7 +103,9 @@ inline void release_fence() {
 
     Use this in spinloops, for example. */
 inline void relax_fence() {
-    asm volatile("pause" : : : "memory"); // equivalent to "rep; nop"
+    // Daniel Change:
+    //asm volatile("pause" : : : "memory"); // equivalent to "rep; nop"
+    asm volatile("yield" : : : "memory");
 }
 
 /** @brief Full memory fence. */
@@ -154,8 +156,9 @@ template <int SIZE, typename BARRIER> struct sized_compiler_operations;
 template <typename B> struct sized_compiler_operations<1, B> {
     typedef char type;
     static inline type xchg(type* object, type new_value) {
-	asm volatile("xchgb %0,%1"
-		     : "+q" (new_value), "+m" (*object));
+	//asm volatile("xchgb %0,%1"
+	//	     : "+r" (new_value), "+m" (*object));
+	new_value = __atomic_exchange_n(object, new_value, __ATOMIC_SEQ_CST);
 	B()();
 	return new_value;
     }
@@ -210,8 +213,9 @@ template <typename B> struct sized_compiler_operations<2, B> {
     typedef int16_t type;
 #endif
     static inline type xchg(type* object, type new_value) {
-	asm volatile("xchgw %0,%1"
-		     : "+r" (new_value), "+m" (*object));
+	//asm volatile("xchgw %0,%1"
+	//	     : "+r" (new_value), "+m" (*object));
+	new_value = __atomic_exchange_n(object, new_value, __ATOMIC_SEQ_CST);
 	B()();
 	return new_value;
     }
@@ -266,8 +270,10 @@ template <typename B> struct sized_compiler_operations<4, B> {
     typedef int32_t type;
 #endif
     static inline type xchg(type* object, type new_value) {
-	asm volatile("xchgl %0,%1"
-		     : "+r" (new_value), "+m" (*object));
+	// Daniel change:
+	//asm volatile("xchgl %0,%1"
+	//	     : "+r" (new_value), "+m" (*object));
+	new_value = __atomic_exchange_n(object, new_value, __ATOMIC_SEQ_CST);
 	B()();
 	return new_value;
     }
@@ -564,8 +570,10 @@ inline void prefetch(const void *ptr) {
 #ifdef NOPREFETCH
     (void) ptr;
 #else
-    typedef struct { char x[64]; } cacheline_t;
-    asm volatile("prefetcht0 %0" : : "m" (*(const cacheline_t *)ptr));
+    //Daniel Change:
+    //typedef struct { char x[64]; } cacheline_t;
+    //asm volatile("prefetcht0 %0" : : "m" (*(const cacheline_t *)ptr));
+    __builtin_prefetch(ptr);
 #endif
 }
 inline void prefetchnta(const void *ptr) {
@@ -607,7 +615,9 @@ inline uint64_t ntohq(uint64_t val) {
 	: "+r" (v.s.a), "+r" (v.s.b));
     return v.u;
 #else /* __i386__ */
-    asm("bswapq %0" : "+r" (val));
+    //Daniel Change:
+    //asm("bswapq %0" : "+r" (val));
+    val = __builtin_bswap64(val);
     return val;
 #endif
 }

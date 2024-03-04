@@ -247,7 +247,7 @@
 /* #undef IS_AMD64 */
 
 /* amd64 linux */
-#define IS_AMD64_LINUX 1
+/* #undef IS_AMD64_LINUX */
 
 /* nt cygwin */
 /* #undef IS_CYGWIN */
@@ -286,7 +286,7 @@
 /* #undef IS_IX86_NT */
 
 /* linux */
-#define IS_LINUX 1
+/* #undef IS_LINUX */
 
 /* apple mac osx */
 /* #undef IS_MACOSX */
@@ -346,13 +346,13 @@
 /* #undef IS_X86_64 */
 
 /* x86_64 linux */
-#define IS_X86_64_LINUX 1
+/* #undef IS_X86_64_LINUX */
 
 /* operating system */
 /* #undef Irix */
 
 /* operating system */
-#define Linux /**/
+/* #undef Linux */
 
 /* operating system */
 /* #undef MacOSX */
@@ -477,7 +477,7 @@
 /* #undef __MacOSX__ */
 
 /* architecture */
-#define amd64 1
+/* #undef amd64 */
 
 /* Define to `int' if <sys/types.h> doesn't define. */
 /* #undef gid_t */
@@ -527,4 +527,4 @@
 /* #undef win32 */
 
 /* architecture */
-#define x86_64 /**/
+/* #undef x86_64 */

@@ -433,7 +433,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/tailbench/Tailbench/tailbench/masstree'
+ac_pwd='/home/ubuntu/Tailbench/tailbench/masstree'
 srcdir='.'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
@@ -608,7 +608,7 @@ S["GREP"]="/bin/grep"
 S["CXXCPP"]="g++ -E"
 S["ac_ct_CXX"]="g++"
 S["CXXFLAGS"]="-g -O2"
-S["CXX"]="g++"
+S["CXX"]="g++ -std=gnu++0x"
 S["OBJEXT"]="o"
 S["EXEEXT"]=""
 S["ac_ct_CC"]="gcc"

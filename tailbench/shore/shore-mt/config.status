@@ -437,11 +437,11 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/tailbench/Tailbench/tailbench/shore/shore-mt'
+ac_pwd='/home/ubuntu/Tailbench/tailbench/shore/shore-mt'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
-AWK='mawk'
+AWK='gawk'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
 ac_need_defaults=:
@@ -680,7 +680,7 @@ S["ENABLE_ARCH_LP64_FALSE"]="#"
 S["ENABLE_ARCH_LP64_TRUE"]=""
 S["USE_IOS_COMPAT_FALSE"]=""
 S["USE_IOS_COMPAT_TRUE"]="#"
-S["uname_machine"]="x86_64"
+S["uname_machine"]="aarch64"
 S["EGREP"]="/bin/grep -E"
 S["GREP"]="/bin/grep"
 S["RMM"]="rm"
@@ -740,12 +740,12 @@ S["am__tar"]="$${TAR-tar} chof - \"$$tardir\""
 S["AMTAR"]="$${TAR-tar}"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
-S["AWK"]="mawk"
+S["AWK"]="gawk"
 S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /home/tailbench/Tailbench/tailbench/shore/shore-mt/config/install-sh"
+S["install_sh"]="${SHELL} /home/ubuntu/Tailbench/tailbench/shore/shore-mt/config/install-sh"
 S["MAKEINFO"]="makeinfo"
 S["AUTOHEADER"]="autoheader"
 S["AUTOMAKE"]="automake-1.15"
@@ -884,12 +884,6 @@ D["HAVE_LIBRT"]=" 1"
 D["HAVE_PTHREAD_ATTR_GETSTACK"]=" 1"
 D["HAVE_PTHREAD_ATTR_GETSTACKSIZE"]=" 1"
 D["HAVE_PTHREAD_BARRIERS"]=" 1"
-D["x86_64"]=" /**/"
-D["amd64"]=" 1"
-D["Linux"]=" /**/"
-D["IS_X86_64_LINUX"]=" 1"
-D["IS_AMD64_LINUX"]=" 1"
-D["IS_LINUX"]=" 1"
 D["HUGEPAGESIZE"]=" 2048"
 D["HAVE_POSIX_MEMALIGN"]=" 1"
 D["HAVE_MEMALIGN"]=" 1"

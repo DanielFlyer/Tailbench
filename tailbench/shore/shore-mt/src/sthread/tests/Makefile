@@ -173,7 +173,7 @@ AMTAR = $${TAR-tar}
 AUTOCONF = autoconf
 AUTOHEADER = autoheader
 AUTOMAKE = automake-1.15
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCAS = gcc
 CCASDEPMODE = depmode=gcc3
@@ -226,10 +226,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = 
 VERSION = 6.0.1
-abs_builddir = /home/tailbench/Tailbench/tailbench/shore/shore-mt/src/sthread/tests
-abs_srcdir = /home/tailbench/Tailbench/tailbench/shore/shore-mt/src/sthread/tests
-abs_top_builddir = /home/tailbench/Tailbench/tailbench/shore/shore-mt
-abs_top_srcdir = /home/tailbench/Tailbench/tailbench/shore/shore-mt
+abs_builddir = /home/ubuntu/Tailbench/tailbench/shore/shore-mt/src/sthread/tests
+abs_srcdir = /home/ubuntu/Tailbench/tailbench/shore/shore-mt/src/sthread/tests
+abs_top_builddir = /home/ubuntu/Tailbench/tailbench/shore/shore-mt
+abs_top_srcdir = /home/ubuntu/Tailbench/tailbench/shore/shore-mt
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -249,7 +249,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/tailbench/Tailbench/tailbench/shore/shore-mt/config/install-sh
+install_sh = ${SHELL} /home/ubuntu/Tailbench/tailbench/shore/shore-mt/config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -269,7 +269,7 @@ target_alias =
 top_build_prefix = ../../../
 top_builddir = ../../..
 top_srcdir = ../../..
-uname_machine = x86_64
+uname_machine = aarch64
 
 # -*- mode:Makefile -*-
 # rules, macros generic to all Makefile.am

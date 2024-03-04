@@ -20,8 +20,8 @@ using namespace cv;
 class Client {
     private:
         static Client* singleton;
-        static const int totalImgs = 10000; // # images in MNIST test set
-
+        //static const int totalImgs = 10000; // # images in MNIST test set
+	static const int totalImgs = 2;
         std::string mnistDataDir;
         Mat testX;
         Mat testY;
@@ -33,7 +33,7 @@ class Client {
             mnistDataDir = getOpt<std::string>("TBENCH_MNIST_DIR", "");
             std::string testImages = mnistDataDir + "/t10k-images-idx3-ubyte";
             std::string testLabels = mnistDataDir + "/t10k-labels-idx1-ubyte";
-
+            std::cout << "Mnist Data Directory: " << mnistDataDir << std::endl;
             readData(testX, testY, testImages, testLabels, totalImgs);
             std::cout << "Read testX successfully, including " << testX.rows \
                 << " features and " << testX.cols << " samples." << std::endl;

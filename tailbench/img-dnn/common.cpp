@@ -51,6 +51,8 @@ concatenateMat(std::vector<cv::Mat> &vec){
 void 
 read_Mnist(std::string filename, std::vector<cv::Mat> &vec){
     std::ifstream file(filename, std::ios::binary);
+    std::cout << "Reading from mnist file: " << filename << std::endl;
+    fflush(stdout);
     if (file.is_open()){
         int magic_number = 0;
         int number_of_images = 0;
@@ -59,8 +61,9 @@ read_Mnist(std::string filename, std::vector<cv::Mat> &vec){
         file.read((char*) &magic_number, sizeof(magic_number));
         magic_number = ReverseInt(magic_number);
         file.read((char*) &number_of_images,sizeof(number_of_images));
-        number_of_images = ReverseInt(number_of_images);
-        file.read((char*) &n_rows, sizeof(n_rows));
+        //number_of_images = ReverseInt(number_of_images);
+        number_of_images = 2;
+	file.read((char*) &n_rows, sizeof(n_rows));
         n_rows = ReverseInt(n_rows);
         file.read((char*) &n_cols, sizeof(n_cols));
         n_cols = ReverseInt(n_cols);
@@ -75,6 +78,7 @@ read_Mnist(std::string filename, std::vector<cv::Mat> &vec){
             }
             vec.push_back(tpmat);
         }
+	std::cout << "Finished reading MNIST data from file" << std::endl;
     } else {
         std::cerr << "Failed to read MNIST data from file " << filename \
             << std::endl;
@@ -94,8 +98,9 @@ read_Mnist_Label(std::string filename, cv::Mat &mat)
         file.read((char*) &magic_number, sizeof(magic_number));
         magic_number = ReverseInt(magic_number);
         file.read((char*) &number_of_images,sizeof(number_of_images));
-        number_of_images = ReverseInt(number_of_images);
-        for(int i = 0; i < number_of_images; ++i){
+        //number_of_images = ReverseInt(number_of_images);
+        number_of_images = 2;
+	for(int i = 0; i < number_of_images; ++i){
             unsigned char temp = 0;
             file.read((char*) &temp, sizeof(temp));
             mat.at<double>(0, i) = (double)temp;

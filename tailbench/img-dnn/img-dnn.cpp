@@ -67,16 +67,19 @@ resultProdict(const Mat &x, const vector<SA> &hLayers, const SMR &smr){
 }
 
 void loadModel(SMR& smr, vector<SA>& HiddenLayers, string modelFile) {
+    
+    cout << "Model name: " << modelFile << endl;
     FileStorage fs(modelFile, FileStorage::READ);
-
+    
+    cout << "Model Loaded" << endl;
     FileNode smrNode = fs["smr"];
+    
     smrNode["Weight"] >> smr.Weight;
     smrNode["Wgrad"] >> smr.Wgrad;
     smrNode["cost"] >> smr.cost;
 
     HiddenLayers.clear();
     FileNode layersNode = fs["HiddenLayers"];
-
     for (auto it = layersNode.begin(); it != layersNode.end(); ++it) {
         SA sa;
         (*it)["W1"] >> sa.W1;
@@ -162,6 +165,7 @@ class Worker {
         }
 
         void join() {
+	    cout << "Joining thread: " << tid << endl;
             pthread_join(thread, nullptr);
         }
 
@@ -178,10 +182,12 @@ atomic_llong Worker::correct(0);
 int 
 main(int argc, char** argv)
 {
+    printf("Starting test run\n");
+    fflush(stdout);
     string modelFile = "model.xml";
     int maxReqs = 6000; // Full MNIST test dataset
     int nThreads = 1;
-
+    
     int c;
     while ((c = getopt(argc, argv, "f:n:r:h")) != -1) {
         switch(c) {
@@ -204,16 +210,20 @@ main(int argc, char** argv)
                 break;
         }
     }
-
+    cout << "Model name: " << modelFile << endl;
     long start, end;
     start = clock();
 
     vector<SA> HiddenLayers;
     SMR smr;
-
+    printf("Starting to load model\n");
+    fflush(stdout);
     loadModel(smr, HiddenLayers, modelFile);
-
+    printf("Initializing test bench server\n");
+    fflush(stdout);
     tBenchServerInit(nThreads);
+    printf("Update max reqs\n");
+    fflush(stdout);
     Worker::updateMaxReqs(maxReqs);
     vector<Worker> workers;
     for (int t = 0; t < nThreads; ++t) {
@@ -223,7 +233,7 @@ main(int argc, char** argv)
     for (int t = 0; t < nThreads; ++t) {
         workers[t].run();
     }
-
+    cout << "Joining pthreads" << endl;
     for (int t = 0; t < nThreads; ++t) {
         workers[t].join();
     }

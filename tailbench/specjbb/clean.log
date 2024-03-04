@@ -1,0 +1,7 @@
+Buildfile: /home/ubuntu/Tailbench/tailbench/specjbb/build.xml
+
+clean:
+   [delete] Deleting directory /home/ubuntu/Tailbench/tailbench/specjbb/build
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
